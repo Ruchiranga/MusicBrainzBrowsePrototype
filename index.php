@@ -10,6 +10,8 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 	<script src="js/select2.js"></script>
 	<script src="js/bootstrap.js"></script>
+<!-- <script src="js/edit.js"></script> -->
+	<script src="js/ko.js"></script>
 	<style type="text/css">
 	#filter li {
 		cursor: pointer;
@@ -612,7 +614,28 @@
 										</div>
 
 										<h3>Born/Founded</h3>
-										<ul id="begin">
+										<h3>From</h3>
+										<span class="partial-date">
+											<input maxlength="4" placeholder="YYYY" size="4" class="partial-date-year" data-bind="value:fromyear" id="event-date-0">
+											-
+											<input maxlength="2" placeholder="MM" size="2" class="partial-date-month" data-bind="value:frommonth">
+											-
+											<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value:fromday">
+										</span>
+										<h3>To</h3>
+										<span class="partial-date">
+											<input maxlength="4" placeholder="YYYY" size="4" class="partial-date-year" data-bind="value: toyear">
+											-
+											<input maxlength="2" placeholder="MM" size="2" class="partial-date-month" data-bind="value: tomonth">
+											-
+											<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value: today">
+										</span>
+										<ul id="begin" data-bind="html:displayli">
+											<!-- <p id = "applyrange">Apply range: <strong data-bind = "text: fromdate"></strong> To <strong data-bind = "text: todate"></strong></p> -->
+											<!-- <li id = "applyrange">Apply range: <strong data-bind = "text: fromdate"></strong> To <strong data-bind = "text: todate"></strong></li>  -->
+											<li name="[0 TO 1799-12-31]">Before 1800</li>
+										</ul>
+										<!-- <ul id="begin">
 											<li name="[0 TO 1799-12-31]">Before 1800</li>
 											<li name="[1800 TO 1899-12-31]">1800-1899</li>
 											<li name="[1900 TO 1909-12-31]">1900-1909</li>
@@ -627,7 +650,7 @@
 											<li name="[1990 TO 1999-12-31]">1990-1999</li>
 											<li name="[2000 TO 2009-12-31]">2000-2009</li>
 											<li name="[2010 TO 3000]">2010 to present</li>
-										</ul>
+										</ul> -->
 
 										<h3>Tags</h3>
 										<ul id="tag">
@@ -825,12 +848,13 @@ $("#filter li").click(clicked);
 $("#textfilter").keyup(function() { typewatch(clicked, 500); });
 
 function clicked() {
+	 console.log("in click function");
 	$(this).toggleClass("selected");
 
 
 	var str = $.map( $("#filter ul") , function(a){
 		var n = $(a).attr("id");
-		var varr = $.map( $(a).find("li.selected") , function(b){ return $(b).attr("name"); } );
+		var varr = $.map( $(a).find("li.selected") , function(b){ console.log($(b).attr("name"));return $(b).attr("name"); } );
 		if (varr.length > 0)
 			return n + ":(" + varr.join(" OR ") + ")";
 	});
@@ -1031,10 +1055,85 @@ $("#e5").on("change", function(e) {
 	$("#e5").select2("val", "");
 });
 
+// Here's my data model
+function FromToDateModel() {
+	this.fromyear = ko.observable("");
+	this.frommonth = ko.observable("");
+	this.fromday= ko.observable("");
+	this.toyear= ko.observable("");
+	this.tomonth= ko.observable("");
+	this.today= ko.observable("");
+    
+ 
+    this.fromdate = ko.computed(function() {
+
+        if(this.fromyear().toString() == ""){
+        	return "";
+        }else if(this.frommonth().toString() == ""){
+        	return this.fromyear();
+        }else if(this.fromday().toString() == ""){
+        	return this.fromyear()+"-"+this.frommonth();
+        }else{
+        	return this.fromyear()+"-"+this.frommonth()+"-"+this.fromday();
+        }
+    }, this);
+    this.todate = ko.computed(function() {
+        if(this.toyear().toString() == ""){
+        	return "";
+        }else if(this.tomonth().toString() == ""){
+        	return this.toyear();
+        }else if(this.today().toString() == ""){
+        	return this.toyear()+"-"+this.tomonth();
+        }else{
+        	return this.toyear()+"-"+this.tomonth()+"-"+this.today();
+        }
+    }, this);
+
+    this.displayli = ko.computed(function() {
+    	// $("#daterange").click(clicked);
+    	console.log("<li onclick = 'clicked()' name='["+this.fromdate()+" TO "+this.todate()+"]'>"+"From "+this.fromdate()+" TO "+this.todate()+"</li>");
+    	// return "<li name='["+this.fromdate()+"&nbsp;&#84;&#79;&nbsp;"+this.todate()+"]'>"+"From "+this.fromdate()+" TO "+this.todate()+"</li>";
+    	if(this.fromdate() == "" || this.todate() == "" ){
+    		return "Please enter valid date range.";
+    	}else{
+    		return "<li id = 'range' onclick = 'rebind()' name='["+this.fromdate()+" TO "+this.todate()+"]'>"+"From "+this.fromdate()+" TO "+this.todate()+"</li>";
+		}
+    },this);
+
+    this.callClick = function() {
+    	console.log("In call click");
+        
+    };
+    // document.getElementById('applyrange').name = "["+this.fromdate()+" TO "+this.todate()+"]";
+    // console.log(document.getElementById('applyrange').name);
+};
+ 
+ko.applyBindings(new FromToDateModel()); // This makes Knockout get to work
+
+// $(document).ready(function(){
+//     $("#range").click(function(){
+//         console.log('rebind called');
+// 		$("#range").toggleClass("selected");
+// 	// $("#range").click(clicked);
+//     clicked();
+//     });
+// });
+
+function rebind(){
+	if(document.getElementById('range').className.match(/\bselected\b/)){
+		document.getElementById('range').className= '';
+	}else{
+		document.getElementById('range').className= 'selected';
+	}
+	console.log('rebind called');
+	//document.getElementById("range").toggleClass("selected");
+    clicked();
+}
 
 </script>
 
 </body>
 </html>
+
 
 
