@@ -12,7 +12,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 	<script src="js/select2.js"></script>
 	<script src="js/bootstrap.js"></script>
-<!-- <script src="js/edit.js"></script> -->
 	<script src="js/ko.js"></script>
 	<style type="text/css">
 	#filter li {
@@ -356,26 +355,17 @@
 				<div style="float:left;" id="filter">
 					<form style="width:200px">
 
-<!-- 					    <div class="container">
-							<div class="row">
-						        <div class="col-sm-6 col-sm-offset-3"> -->
-						            <div id="imaginary_container"> 
-						                <div class="input-group stylish-input-group">
-						                    <input type="text" class="form-control"  id="textfilter" placeholder="Search" >
-						                    <span class="input-group-addon">
-						                        <!-- <button type="submit"> -->
-						                        <button disabled>
-						                            <span class="glyphicon glyphicon-search"></span>
-						                        </button>  
-						                    </span>
-						                </div>
-<!-- 						            </div>
-						        </div>
-							</div> -->
+						<div id="imaginary_container"> 
+							<div class="input-group stylish-input-group">
+								<input type="text" class="form-control"  id="textfilter" placeholder="Search" >
+								<span class="input-group-addon">
+
+									<button disabled>
+										<span class="glyphicon glyphicon-search"></span>
+									</button>  
+								</span>
+							</div>
 						</div>
-
-						<!-- <input type="text" id="textfilter" /> -->
-
 
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							<div class="panel panel-default">
@@ -687,26 +677,8 @@
 												<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value: today, valueUpdate:'keyup'">
 											</span>
 											<ul id="begin" data-bind="html:displayli">
-												<!-- <p id = "applyrange">Apply range: <strong data-bind = "text: fromdate"></strong> To <strong data-bind = "text: todate"></strong></p> -->
-												<!-- <li id = "applyrange">Apply range: <strong data-bind = "text: fromdate"></strong> To <strong data-bind = "text: todate"></strong></li>  -->
 												<li name="[0 TO 1799-12-31]">Before 1800</li>
 											</ul>
-											<!-- <ul id="begin">
-												<li name="[0 TO 1799-12-31]">Before 1800</li>
-												<li name="[1800 TO 1899-12-31]">1800-1899</li>
-												<li name="[1900 TO 1909-12-31]">1900-1909</li>
-												<li name="[1910 TO 1919-12-31]">1910-1919</li>
-												<li name="[1920 TO 1929-12-31]">1920-1929</li>
-												<li name="[1930 TO 1939-12-31]">1930-1939</li>
-												<li name="[1940 TO 1949-12-31]">1940-1949</li>
-												<li name="[1950 TO 1959-12-31]">1950-1959</li>
-												<li name="[1960 TO 1969-12-31]">1960-1969</li>
-												<li name="[1970 TO 1979-12-31]">1970-1979</li>
-												<li name="[1980 TO 1989-12-31]">1980-1989</li>
-												<li name="[1990 TO 1999-12-31]">1990-1999</li>
-												<li name="[2000 TO 2009-12-31]">2000-2009</li>
-												<li name="[2010 TO 3000]">2010 to present</li>
-											</ul> -->
 
 											<h3>Tags</h3>
 											<ul id="tag">
@@ -826,63 +798,6 @@
 <div style="clear: both"></div>
 </div>
 
-<!-- 
-<div class="row">
-	<section class='col-xs-6 col-sm-3 col-md-3'>
-		<section>
-			<h2>Deploying code changes</h2>
-			<p>OpenShift uses the <a href="http://git-scm.com/">Git version control system</a> for your source code, and grants you access to it via the Secure Shell (SSH) protocol. In order to upload and download code to your application you need to give us your <a href="https://developers.openshift.com/en/managing-remote-connection.html">public SSH key</a>. You can upload it within the web console or install the <a href="https://developers.openshift.com/en/managing-client-tools.html">RHC command line tool</a> and run <code>rhc setup</code> to generate and upload your key automatically.</p>
-
-			<h3>Working in your local Git repository</h3>
-			<p>If you created your application from the command line and uploaded your SSH key, rhc will automatically download a copy of that source code repository (Git calls this 'cloning') to your local system.</p>
-
-			<p>If you created the application from the web console, you'll need to manually clone the repository to your local system. Copy the application's source code Git URL and then run:</p>
-
-			<pre>$ git clone &lt;git_url&gt; &lt;directory_to_create&gt;
-
-				# Within your project directory
-				# Commit your changes and push to OpenShift
-
-				$ git commit -a -m 'Some commit message'
-				$ git push</pre>
-
-
-				<ul>
-					<li><a href="https://developers.openshift.com/en/managing-modifying-applications.html">Learn more about deploying and building your application</a></li>
-					<li>See the README file in your local application Git repository for more information on the options for deploying applications.</li>
-				</ul>
-			</section>
-
-		</section>
-		<section class="col-xs-12 col-sm-6 col-md-6">
-
-			<h2>Managing your application</h2>
-
-			<h3>Web Console</h3>
-			<p>You can use the OpenShift web console to enable additional capabilities via cartridges, add collaborator access authorizations, designate custom domain aliases, and manage domain memberships.</p>
-
-			<h3>Command Line Tools</h3>
-			<p>Installing the <a href="https://developers.openshift.com/en/managing-client-tools.html">OpenShift RHC client tools</a> allows you complete control of your cloud environment. Read more on how to manage your application from the command line in our <a href="https://www.openshift.com/user-guide">User Guide</a>.
-			</p>
-
-			<h2>Development Resources</h2>
-			<ul>
-				<li><a href="https://developers.openshift.com/en/php-overview.html">Getting Started with PHP on OpenShift</a></li>
-				<li><a href="https://developers.openshift.com">Developer Center</a></li>
-				<li><a href="https://www.openshift.com/user-guide">User Guide</a></li>
-				<li><a href="https://help.openshift.com">Help Center</a></li>
-				<li><a href="http://stackoverflow.com/questions/tagged/openshift">Stack Overflow questions for OpenShift</a></li>
-				<li><a href="http://git-scm.com/documentation">Git documentation</a></li>
-			</ul>
-
-
-		</section>
-	</div>
-
-
-	<footer>
-		<div class="logo"><a href="https://www.openshift.com/"></a></div>
-	</footer> -->
 </section>
 
 
@@ -904,7 +819,7 @@ var base_url_release_group = "https://musicbrainz.org/ws/2/release-group?fmt=jso
 var base_url_release = "https://musicbrainz.org/ws/2/release?fmt=json&query=";
 
 var base_url;
-// var base_url = "https://musicbrainz.org/ws/2/artist?fmt=json&query=";
+
 $("#results").html("<br><h1>Type a search term and click on the category you need to browse through. Leaving the search field empty and browsing through categories would mean *Show all results under the selected filter(s)* </h1>");
 
 $("#filter li").click(clicked);
