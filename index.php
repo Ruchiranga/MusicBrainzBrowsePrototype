@@ -851,8 +851,13 @@ function clicked() {
 	}
 	var url = base_url  + str.join(" AND ");
 
-	$("#results").html("Query: <a href=\"" + url + "\">" + url + "</a><br/>");
+	
 
+	if(!base_url){
+		$("#results").html("<br><h1>Please choose a category to search for...</h1>");
+	}else{
+		$("#results").html("Query: <a href=\"" + url + "\">" + url + "</a><br/>");
+	}
 	if(choice == "artist" && str.length > 0){
 		$.getJSON(url, function(data) {
 			var items = [];
