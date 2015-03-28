@@ -661,11 +661,14 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
 
     if (!data || !data.transitioning) {
       if ($parent) $parent.find('[data-toggle=collapse][data-parent="' + parent + '"]').not($this).addClass('collapsed')
+      
       $this[$target.hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
     }
+ 
+    console.log($this);
+    console.log(target);
 
-
-    console.log(typeof target);  
+    prevchoice = choice;
     if (target == "#collapseOne") {
       base_url = base_url_artist;
       choice = "artist";
@@ -677,7 +680,16 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
       choice = "release";
     }
     console.log(base_url);
-    
+
+    $("#"+choice+" li").each(function( index ) {
+      $(this).removeClass("selected");
+    });
+    if(prevchoice!=choice && prevchoice!=''){
+      $("#"+prevchoice+" li").each(function( index ) {
+        $(this).removeClass("selected");
+      });
+    }
+    clicked();
     $target.collapse(option)
   })
 
