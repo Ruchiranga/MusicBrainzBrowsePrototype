@@ -672,18 +672,45 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     if (target == "#collapseOne") {
       base_url = base_url_artist;
       choice = "artist";
+      // if(prevchoice == choice && prevchoice != ''){
+      //   base_url = base_url_all;
+      //   choice = '';
+      // }
+      if(prevchoice == choice){
+        base_url = '';
+        choice = '';
+      }
     }else if (target == "#collapseTwo") {
       base_url = base_url_release_group;
       choice = "release-group";
+      // if(prevchoice == choice && prevchoice != ''){
+      //   base_url = base_url_all;
+      //   choice = '';
+      // }
+      if(prevchoice == choice){
+        base_url = '';
+        choice = '';
+      }
     }else if (target == "#collapseThree") {
       base_url = base_url_release;
       choice = "release";
+      // if(prevchoice == choice && prevchoice != ''){
+      //   base_url = base_url_all;
+      //   choice = '';
+      // }
+      if(prevchoice == choice){
+        base_url = '';
+        choice = '';
+      }
     }
     console.log(base_url);
 
-    $("#"+choice+" li").each(function( index ) {
-      $(this).removeClass("selected");
-    });
+    if(choice!=''){
+      $("#"+choice+" li").each(function( index ) {
+        $(this).removeClass("selected");
+      });
+    }
+
     if(prevchoice!=choice && prevchoice!=''){
       $("#"+prevchoice+" li").each(function( index ) {
         $(this).removeClass("selected");

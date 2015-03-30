@@ -24,7 +24,7 @@
 	}
 
 	.selected {
-		background-color: plum;
+		background-color: lightslategray;
 	}
 
 	.disabled {
@@ -43,7 +43,8 @@
 		margin-bottom: 5px;
 	}*/
 	.select2-choices {
-		min-height: 16px !important;
+		/*min-height: 16px !important;*/
+		padding-left: 0px; 
 	}
 	.select2-input {
 		padding: 2px !important;
@@ -467,7 +468,7 @@
 												<li name="GQ" class="disabled">Equatorial Guinea</li>
 												<li name="ER" class="disabled">Eritrea</li>
 												<li name="ET" class="disabled">Ethiopia</li>
-												<li name="EE">Estonia</li>
+												<li name="EE" class="disabled">Estonia</li>
 												<li name="XE" class="disabled">Europe</li>
 												<li name="FK" class="disabled">Falkland Islands (Malvinas)</li>
 												<li name="FO" class="disabled">Faroe Islands</li>
@@ -480,7 +481,7 @@
 												<li name="GA" class="disabled">Gabon</li>
 												<li name="GM" class="disabled">Gambia</li>
 												<li name="GE" class="disabled">Georgia</li>
-												<li name="DE">Germany</li>
+												<li name="DE" class="disabled">Germany</li>
 												<li name="GH" class="disabled">Ghana</li>
 												<li name="GI" class="disabled">Gibraltar</li>
 												<li name="GR" class="disabled">Greece</li>
@@ -508,7 +509,7 @@
 												<li name="IL" class="disabled">Israel</li>
 												<li name="IT" class="disabled">Italy</li>
 												<li name="JM" class="disabled">Jamaica</li>
-												<li name="JP">Japan</li>
+												<li name="JP" class="disabled">Japan</li>
 												<li name="JE" class="disabled">Jersey</li>
 												<li name="JO" class="disabled">Jordan</li>
 												<li name="KZ" class="disabled">Kazakhstan</li>
@@ -656,40 +657,66 @@
 											</ul>
 
 											<div id="morecountries">
-												<input type="hidden" id="e5" style="width:300px" />
+												<input placeholder="Specify Country..." type="hidden" id="e5" style="width:300px" />
 											</div>
 
 											<h3>Born/Founded</h3>
 											<h3>From</h3>
-											<span class="partial-date">
-												<input maxlength="4" placeholder="YYYY" size="4" class="partial-date-year" data-bind="value:fromyear, valueUpdate:'keyup'" id="event-date-0">
-												-
-												<input maxlength="2" placeholder="MM" size="2" class="partial-date-month" data-bind="value:frommonth, valueUpdate:'keyup'">
-												-
-												<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value:fromday, valueUpdate:'keyup'">
-											</span>
-											<h3>To</h3>
-											<span class="partial-date">
-												<input maxlength="4" placeholder="YYYY" size="4" class="partial-date-year" data-bind="value: toyear, valueUpdate:'keyup'">
-												-
-												<input maxlength="2" placeholder="MM" size="2" class="partial-date-month" data-bind="value: tomonth, valueUpdate:'keyup'">
-												-
-												<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value: today, valueUpdate:'keyup'">
-											</span>
-											<ul id="begin" data-bind="html:displayli">
-												<li name="[0 TO 1799-12-31]">Before 1800</li>
-											</ul>
+											<div id = "born-founded">
+												<span class="partial-date">
+													<input maxlength="4" placeholder="YYYY" size="4" class="partial-date-year" data-bind="value:fromyear, valueUpdate:'keyup'" id="event-date-0">
+													-
+													<input maxlength="2" placeholder="MM" size="2" class="partial-date-month" data-bind="value:frommonth, valueUpdate:'keyup'">
+													-
+													<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value:fromday, valueUpdate:'keyup'">
+												</span>
+												<h3>To</h3>
+												<span class="partial-date">
+													<input maxlength="4" placeholder="YYYY" size="4" class="partial-date-year" data-bind="value: toyear, valueUpdate:'keyup'">
+													-
+													<input maxlength="2" placeholder="MM" size="2" class="partial-date-month" data-bind="value: tomonth, valueUpdate:'keyup'">
+													-
+													<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value: today, valueUpdate:'keyup'">
+												</span>
+												<ul id="begin" data-bind="html:displayli">
+													<li name="[0 TO 1799-12-31]">Before 1800</li>
+												</ul>
+											</div>
+
+											<h3>Died/Dissolved</h3>
+											<h3>From</h3>
+											<div id = "died-dissolved">
+												<span class="partial-date">
+													<input maxlength="4" placeholder="YYYY" size="4" class="partial-date-year" data-bind="value:fromyear, valueUpdate:'keyup'" id="event-date-0">
+													-
+													<input maxlength="2" placeholder="MM" size="2" class="partial-date-month" data-bind="value:frommonth, valueUpdate:'keyup'">
+													-
+													<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value:fromday, valueUpdate:'keyup'">
+												</span>
+												<h3>To</h3>
+												<span class="partial-date">
+													<input maxlength="4" placeholder="YYYY" size="4" class="partial-date-year" data-bind="value: toyear, valueUpdate:'keyup'">
+													-
+													<input maxlength="2" placeholder="MM" size="2" class="partial-date-month" data-bind="value: tomonth, valueUpdate:'keyup'">
+													-
+													<input maxlength="2" placeholder="DD" size="2" class="partial-date-day" data-bind="value: today, valueUpdate:'keyup'">
+												</span>
+												<ul id="end" data-bind="html:displayli">
+													<li name="[0 TO 1799-12-31]">Before 1800</li>
+												</ul>
+											</div>
 
 											<h3>Tags</h3>
-											<ul id="tag">
-												<li name="classical">Classical</li>
-												<li name="electronic">Electronic</li>
-												<li name="jazz">Jazz</li>
-												<li name="pop">Pop</li>
-												<li name="punk">Punk</li>
-												<li name="rock">Rock</li>
-												<li name="techno">Techno</li>
-											</ul>
+											<div id = "artisttaglist">
+												<ul id="tag-artist" data-bind="foreach: tags">
+													<!-- ko if: tag -->
+														<li onclick = "toggleTagSelect(this)" data-bind = "text:tag , attr: { name: tag, 'class': className}"></li>
+												    <!-- /ko -->
+												</ul>
+												<div style = "padding-top = 5px">
+													<input placeholder="Specify Tag..." data-bind="value:tag" style="padding-left: 20px;width:80%" />
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -725,7 +752,7 @@
 											</ul>
 
 											<h3>Number of Releases</h3>
-											<ul id="releases">
+											<!-- <ul id="releases">
 												<li name="[0 TO 9]">Less than 10</li>
 												<li name="[10 TO 20]">10-19</li>
 												<li name="[20 TO 30]">20-29</li>
@@ -733,10 +760,24 @@
 												<li name="[40 TO 59]">40-50</li>
 												<li name="[50 TO 5000]">50 upwards</li>
 												
-											</ul>
-
+											</ul> -->
+											<div id= "noofreleases">
+												<ul id="releases" data-bind="html:displayli, valueUpdate:'keyup'"></ul>
+											
+												<input placeholder="Specify value..." data-bind="value:input, valueUpdate:'keyup'" style="padding-left: 20px;width:80%" />
+											</div>
 											<h3>Tags</h3>
-											<ul id="tag">
+											<div id = "rgtaglist">
+												<ul id="tag-rg" data-bind="foreach: tags">
+													<!-- ko if: tag -->
+														<li onclick = "toggleTagSelect(this)" data-bind = "text:tag , attr: { name: tag, 'class': className}"></li>
+												    <!-- /ko -->
+												</ul>
+												<div style = "padding-top = 5px">
+													<input placeholder="Specify Tag..." data-bind="value:tag" style="padding-left: 20px;width:80%" />
+												</div>
+											</div>
+											<!-- <ul id="tag">
 												<li name="classical">Classical</li>
 												<li name="electronic">Electronic</li>
 												<li name="jazz">Jazz</li>
@@ -744,7 +785,7 @@
 												<li name="punk">Punk</li>
 												<li name="rock">Rock</li>
 												<li name="techno">Techno</li>
-											</ul>
+											</ul> -->
 										</div>
 									</div>
 								</div>
@@ -812,12 +853,14 @@ var typewatch = (function() {
 	}
 })();
 
-var prevchoice = ""; //artist, release-group, release
-var choice = ""; //artist, release-group, release
+var prevchoice = ""; //artist, release-group, release,all
+var choice = ""; //artist, release-group, release,all
 var base_url_artist = "https://musicbrainz.org/ws/2/artist?fmt=json&query=";
 var base_url_release_group = "https://musicbrainz.org/ws/2/release-group?fmt=json&query=";
 var base_url_release = "https://musicbrainz.org/ws/2/release?fmt=json&query=";
+var base_url_all = "https://search.musicbrainz.org/ws/2/all/?fmt=json&limit=50&query=";
 
+// var base_url = base_url_all;
 var base_url;
 
 $("#results").html("<br><h1>Type a search term and click on the category you need to browse through. Leaving the search field empty and browsing through categories would mean *Show all results under the selected filter(s)* </h1>");
@@ -826,13 +869,21 @@ $("#filter li").click(clicked);
 $("#textfilter").keyup(function() { typewatch(clicked, 500); });
 
 
-function clicked() {
+function clicked(noToggle) {
 
-	$(this).toggleClass("selected");
-
+	// if(!noToggle){
+	// 	console.log('in toggle with');
+	// 	console.log($(this));
+	// 	console.log("input is " + noToggle);
+		$(this).toggleClass("selected");
+	// }else{
+	// 	console.log('not in toggle');
+	// 	console.log($(this));
+	// 	console.log(noToggle);
+	// }
 		
 	var str = $.map( $("#filter ul") , function(a){
-		var n = $(a).attr("id");
+		var n = String($(a).attr("id")).replace(/-.*/, '');
 		var varr = $.map( $(a).find("li.selected") , function(b){ return $(b).attr("name"); } );
 		if (varr.length > 0)
 			return n + ":(" + varr.join(" OR ") + ")";
@@ -847,6 +898,7 @@ function clicked() {
 		if (textfilter && textfilter.match('[0-9]{16}'))
 			textstrs.push("isni:(" + textfilter + ")");
 
+		// str.push("(\"" + textstrs.join(" OR ") + "\")");
 		str.push("(" + textstrs.join(" OR ") + ")");
 	}
 	var url = base_url  + str.join(" AND ");
@@ -856,8 +908,55 @@ function clicked() {
 	if(!base_url){
 		$("#results").html("<br><h1>Please choose a category to search for...</h1>");
 	}else{
-		$("#results").html("Query: <a href=\"" + url + "\">" + url + "</a><br/>");
+		$("#results").html('Query: <a href=\"' + url + '\">' + url + '</a><br/>');
 	}
+	// if(choice == "" && str.length > 0){
+	// 	$.getJSON(url, function(data) {
+	// 		var items = [];
+	// 		console.log(data);
+	// 		$('#results').append(data.count + " results found");
+
+	// 		// $(data.artists).each(function(k, v) {
+	// 		// 	var name = v.name;
+
+	// 		// 	var disamb2 = "";
+	// 		// 	var type = v.type;
+	// 		// 	var disamb = Array();
+	// 		// 	if (v.disambiguation) disamb2 = " <span style='color:grey'>("+v.disambiguation+")</span>";
+
+	// 		// 	var gender = v.gender ? v.gender == "male" ? "\u2642" : v.gender == "female" ? "\u2640" : " (other)" : "";
+	// 		// 	var type = v.type ? v.type : "";
+	// 		// 	var country = v.area ? " from " + v.area.name : "";
+	// 		// 	var begin = v["life-span"].begin ? v["life-span"].begin : "";
+	// 		// 	begin = begin.replace(/-.*/, '');
+	// 		// 	var end = v["life-span"].end ? v["life-span"].end : v["life-span"].ended ? "????" : "";
+	// 		// 	end = end.replace(/-.*/, '');
+
+	// 		// 	if (gender || type || country) disamb.push(type + gender + country);
+	// 		// 	if (begin || end) disamb.push(begin + "-" + end);
+	// 		// 	if (v.aliases) {
+	// 		// 		for (i = 0; i < v.aliases.length; i++) {
+	// 		// 			if (v.aliases[i].locale == "en" && v.aliases[i].primary) {
+	// 		// 				name = v.aliases[i].name;
+	// 		// 				disamb.push(v.name);
+	// 		// 				break;
+	// 		// 			}
+	// 		// 		}
+	// 		// 	}
+	// 		// 	var str = "<li style='border-top:1px solid grey; padding: 3px;'><a style='text-decoration:none' href=\"https://musicbrainz.org/artist/" + v.id + "\">" + name + "</a>"+disamb2;
+	// 		// 	if (disamb.length > 0) 
+	// 		// 		str = str + "<br/><span style='padding-left:20px;color:#111'>" + disamb.join("; ") + "</span>";
+	// 		// 	str = str + "</li>";
+	// 		// 	items.push(str);
+	// 		 });
+
+	// 		// $('<ul/>', {
+	// 		// 	'class': 'my-new-list',
+	// 		// 	'style': 'padding-left:0; list-style-type:none;',
+	// 		// 	html: items.join('')
+	// 		// }).appendTo('#results');
+	// 		// });
+	// }else 
 	if(choice == "artist" && str.length > 0){
 		$.getJSON(url, function(data) {
 			var items = [];
@@ -1040,7 +1139,7 @@ $("#e5").on("change", function(e) {
 });
 
 
-function FromToDateModel() {
+function BornFromToDateModel() {
 	this.fromyear = ko.observable("");
 	this.frommonth = ko.observable("");
 	this.fromday= ko.observable("");
@@ -1050,23 +1149,22 @@ function FromToDateModel() {
     
  
     this.fromdate = ko.computed(function() {
-
-        if(this.fromyear().toString() == ""){
+        if(this.fromyear().toString() == "" || !isValidYear(this.fromyear())){
         	return "";
-        }else if(this.frommonth().toString() == ""){
+        }else if(this.frommonth().toString() == "" || !isValidMonth(this.frommonth())){
         	return this.fromyear();
-        }else if(this.fromday().toString() == ""){
+        }else if(this.fromday().toString() == "" || !isValidDay(this.fromday())){
         	return this.fromyear()+"-"+this.frommonth();
         }else{
         	return this.fromyear()+"-"+this.frommonth()+"-"+this.fromday();
         }
     }, this);
     this.todate = ko.computed(function() {
-        if(this.toyear().toString() == ""){
+        if(this.toyear().toString() == "" || !isValidYear(this.toyear())){
         	return "";
-        }else if(this.tomonth().toString() == ""){
+        }else if(this.tomonth().toString() == "" || !isValidMonth(this.tomonth())){
         	return this.toyear();
-        }else if(this.today().toString() == ""){
+        }else if(this.today().toString() == "" || !isValidDay(this.today())){
         	return this.toyear()+"-"+this.tomonth();
         }else{
         	return this.toyear()+"-"+this.tomonth()+"-"+this.today();
@@ -1074,23 +1172,96 @@ function FromToDateModel() {
     }, this);
 
     this.displayli = ko.computed(function() {
-    	if(this.fromdate() == "" || this.todate() == "" ){
-    		return "Please enter valid date range.";
+    	if(this.fromdate() == "" && this.todate() == "" ){
+    		return "Please enter a valid input.";
+    	}else if(this.fromdate() != "" && this.todate() == ""){
+    		return "<li id = 'range' selected = '' onclick = 'rebind(this)' name='["+this.fromdate()+" TO *]'>"+"After "+this.fromdate()+"</li>";
+    	}else if(this.fromdate() == "" && this.todate() != ""){
+			return "<li id = 'range' selected = '' onclick = 'rebind(this)' name='[* TO "+this.todate()+"]'>"+"Before "+this.todate()+"</li>";
     	}else{
-    		return "<li id = 'range' onclick = 'rebind()' name='["+this.fromdate()+" TO "+this.todate()+"]'>"+"From "+this.fromdate()+" TO "+this.todate()+"</li>";
+    		return "<li id = 'range' selected = '' onclick = 'rebind(this)' name='["+this.fromdate()+" TO "+this.todate()+"]'>"+"From "+this.fromdate()+" TO "+this.todate()+"</li>";
 		}
     },this);
 
 };
+
+function isValidYear(str) {
+    return /[1-9][0-9][0-9][0-9]/.test(str);
+}
+function isValidMonth(str) {
+    var n = ~~Number(str);
+    return String(n) === str && n > 0 && n<=12;
+}
+function isValidDay(str) {
+    var n = ~~Number(str);
+    return String(n) === str && n > 0 && n<=31;
+}
+
+function tagModel(){
+	var self = this;
+
+    self.tags = ko.observableArray(([
+        { tag: 'Electronic', className : '' },
+        { tag: 'Jazz', className : ''  },
+        { tag: 'Rock' , className : '' },
+        { tag: 'Classical' , className : '' }
+    ]));
+ 	self.tag = ko.observable();
+
+ 	ko.computed(function() {
+    	if(self.tag()) {
+    		self.tags.push({ tag: self.tag(), className: 'selected' });
+    		clicked('true');
+    		self.tag("");
+    	}
+    });
+
+}
+
+function releaseCountModel(){
+	var self = this;
+	self.input = ko.observable();
+
+	self.displayli = ko.computed(function() {
+		if(/^\d+$/.test(self.input())){
+			return "<li id = 'rcount' class = '' onclick = 'toggleTagSelect(this)' name='"+self.input()+"'>"+"Equal to "+self.input()+"</li>";
+		}else if(/^\d+-\d+$/.test(self.input())){
+			var fromto = String(self.input()).split("-");
+			return "<li id = 'rcount' class = '' onclick = 'toggleTagSelect(this)' name='["+fromto[0]+" TO "+fromto[1]+"]'>"+"Between "+fromto[0]+" and "+fromto[1]+"</li>";
+		}else{
+			return "Please enter a range or a single value.";
+		}
+    });
+
+}
  
-ko.applyBindings(new FromToDateModel()); 
+ko.applyBindings(new BornFromToDateModel(),document.getElementById('born-founded')); 
+ko.applyBindings(new BornFromToDateModel(),document.getElementById('died-dissolved'));
+ko.applyBindings(new tagModel(),document.getElementById('artisttaglist')); 
+ko.applyBindings(new tagModel(),document.getElementById('rgtaglist')); 
+ko.applyBindings(new releaseCountModel(),document.getElementById('noofreleases')); 
 
 
-function rebind(){
-	if(document.getElementById('range').className.match(/\bselected\b/)){
-		document.getElementById('range').className= '';
+function rebind(e){
+	// if(document.getElementById('range').className.match(/\bselected\b/)){
+	// 	document.getElementById('range').className= '';
+	// }else{
+	// 	document.getElementById('range').className= 'selected';
+	// }
+ //    clicked();
+    if(e.className){
+		e.className= '';
 	}else{
-		document.getElementById('range').className= 'selected';
+		e.className= 'selected';
+	}
+    clicked();
+}
+
+function toggleTagSelect(e){
+	if(e.className){
+		e.className= '';
+	}else{
+		e.className= 'selected';
 	}
     clicked();
 }
@@ -1099,6 +1270,7 @@ function rebind(){
 
 </body>
 </html>
+
 
 
 
